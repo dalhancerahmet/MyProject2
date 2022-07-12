@@ -1,6 +1,7 @@
 ﻿using Business.Abstract;
 using DataAccess.Abstract;
 using Entities.Concrete;
+using Entities.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -23,7 +24,7 @@ namespace Business.Concrete
 
         public Order Get(int orderId)
         {
-            return _orderDal.Get(c => c.OrderID == orderId);
+            return _orderDal.Get(c => c.OrderId == orderId);
         }
 
         public List<Order> GetAll()
@@ -34,6 +35,11 @@ namespace Business.Concrete
         public List<Order> GetDateByOrder(DateTime minDate, DateTime maxDate)
         {
             return _orderDal.GetAll(c => c.OrderDate >= minDate && c.OrderDate <= maxDate);
+        }
+
+        public List<OrderDetailDto> GetOrderDetails()
+        {
+            return _orderDal.GetOrderDetails();
         }
 
         public void Update(Order order)

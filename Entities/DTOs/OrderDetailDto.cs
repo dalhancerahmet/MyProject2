@@ -1,17 +1,16 @@
-﻿using Core.Entities;
+﻿using Core;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Entities.Concrete
+namespace Entities.DTOs
 {
-    public class Customer:IEntity
+    public class OrderDetailDto:IDto
     {
+        public int OrderId { get; set; }
         public string CustomerId { get; set; }
-        public string ContactName { get; set; }
         public string CompanyName { get; set; }
         public string City { get; set; }
-        public string Address { get; set; }
-        public string Phone { get; set; }
+
     }
 }

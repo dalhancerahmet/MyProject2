@@ -11,39 +11,39 @@ namespace ConsoleUI
         static void Main(string[] args)
         {
             ProductManager productManager = new ProductManager(new EfProductDal());
+            EmployeeManager employeeManager = new EmployeeManager(new EfEmployeeDal());
 
-            foreach (var item in productManager.GetAllUnitPrice(1000,20000))
-            {
-                Console.WriteLine(item.ProductName+" " + item.CategoryID+" Fiyatı:"+item.UnitPrice);
-            }
-
-            foreach (var item in productManager.GetByName("Röd"))
-            {
-                Console.WriteLine(item.ProductName);
-            }
-            Console.WriteLine("--------------------------");
+            //GetAllUnitPrice(productManager);
+            //GetContains(productManager);
             OrderManager orderManager = new OrderManager(new EfOrderDal());
             Console.WriteLine(orderManager.Get(10248).ShipCity);
-            Console.WriteLine("--------------------------Tarihe Göre Getir");
+            //GetDateOrder(orderManager);
 
-            var dateString = "7/4/1996 0:00:00 AM";
-            DateTime date1 = DateTime.Parse(dateString,
-                                      System.Globalization.CultureInfo.InvariantCulture);
-            var dateString2 = "7/4/1996 0:00:00 AM";
-            DateTime date2 = DateTime.Parse(dateString2,
-                                      System.Globalization.CultureInfo.InvariantCulture);
-
-            Console.WriteLine(date1);
-
-            foreach (var item in orderManager.GetDateByOrder(date1, date2))
+            
+            var result = productManager.GetAll();
+            if (result.Success)
             {
-                Console.WriteLine(item.OrderDate+" "+ item.OrderID);
+                foreach (var item in result.Data)
+                {
+                    Console.WriteLine(item.ProductName);
+                }
             }
-            Console.WriteLine("--------------------------Sipariş ekleme");
-
-
-            orderManager.Add(new Order { ShipCity = "Malatya", OrderDate=date1, CustomerID= "VINET", EmployeeID= 5, ShipCountry="Türkiye"});
+            else
+            {
+                Console.WriteLine(result.Message);
+            }
+            }
+            
+            //orderManager.Add(new Order { ShipCity = "Malatya", OrderDate=date1, CustomerID= "VINET", EmployeeID= 5, ShipCountry="Türkiye"});
             //orderManager.Update(new Order { OrderID = 11082, ShipCity = "Test Şehri 2", OrderDate = date1, CustomerID = "VINET", EmployeeID = 5, ShipCountry = "Elazığ 2" });
-        }    
+
+            //getProductDetail(productManager);
+            //GetAllEmployee(employeeManager);
+
+            //GetOrderDetails(orderManager);
+            //AddProduct(productManager);
+
+        
     }
 }
+
