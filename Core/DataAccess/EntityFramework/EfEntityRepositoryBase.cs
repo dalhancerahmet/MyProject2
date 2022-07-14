@@ -22,11 +22,6 @@ namespace Core.DataAccess.EntityFramework
             }
         }
 
-        public int CauntOfProduct(int categoryId)
-        {
-            throw new NotImplementedException();
-        }
-
         public void Delete(TEntity entity)
         {
             using (TContex context = new TContex())
@@ -53,11 +48,6 @@ namespace Core.DataAccess.EntityFramework
                     ? context.Set<TEntity>().ToList()
                     : context.Set<TEntity>().Where(filter).ToList();
             }
-        }
-
-        public List<TEntity> GetAllCategoryId(int categoryId)
-        {
-            throw new NotImplementedException();
         }
 
         public void Update(TEntity entity)

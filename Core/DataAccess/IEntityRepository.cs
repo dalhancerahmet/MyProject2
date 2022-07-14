@@ -13,7 +13,5 @@ namespace Core.DataAccess
         List<T> GetAll(Expression<Func<T,bool>> filter=null);
         T Get(Expression<Func<T, bool>> filter);
         void Update(T entity);
-        List<T> GetAllCategoryId(int categoryId);
-        int CauntOfProduct(int categoryId);
     }
 }
