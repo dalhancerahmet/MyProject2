@@ -15,5 +15,6 @@ namespace Business.Contants
         public static string ProductListedByName = "Ürün adına göre listelendi";
         public static string ProductListedByDetails = "Ürünler istenilen tabloya göre listelendi.";
 
+        public static string CategoryLimitedExceeded = "Kategori limiti aşıldı.";
     }
 }

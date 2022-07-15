@@ -4,6 +4,7 @@ using DataAccess.Abstract;
 using Entities.Concrete;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace Business.Concrete
@@ -15,6 +16,11 @@ namespace Business.Concrete
         public CategoryManager(ICategoryDal categoryDal)
         {
             _categoryDal = categoryDal;
+        }
+
+        public int CategoryCount()
+        {
+            return _categoryDal.GetAll().Count();
         }
 
         public IDataResult<List<Category>> GetAll()

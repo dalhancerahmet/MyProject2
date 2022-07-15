@@ -46,7 +46,7 @@ namespace WebAPI.Controllers
             }
             else
             {
-                return BadRequest();
+                return BadRequest("Veri boş");
             }
             
         }

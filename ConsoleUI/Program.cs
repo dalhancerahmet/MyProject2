@@ -10,40 +10,26 @@ namespace ConsoleUI
     {
         static void Main(string[] args)
         {
-            ProductManager productManager = new ProductManager(new EfProductDal());
+            ProductManager productManager = new ProductManager(new EfProductDal(), new CategoryManager(new EfCategoryDal()));
             EmployeeManager employeeManager = new EmployeeManager(new EfEmployeeDal());
 
             //GetAllUnitPrice(productManager);
             //GetContains(productManager);
-            OrderManager orderManager = new OrderManager(new EfOrderDal());
-            Console.WriteLine(orderManager.Get(10248).ShipCity);
+            //OrderManager orderManager = new OrderManager(new EfOrderDal());
+            //Console.WriteLine(orderManager.Get(10248).ShipCity);
             //GetDateOrder(orderManager);
+        }
 
-            
-            var result = productManager.GetAll();
-            if (result.Success)
-            {
-                foreach (var item in result.Data)
-                {
-                    Console.WriteLine(item.ProductName);
-                }
-            }
-            else
-            {
-                Console.WriteLine(result.Message);
-            }
-            }
-            
-            //orderManager.Add(new Order { ShipCity = "Malatya", OrderDate=date1, CustomerID= "VINET", EmployeeID= 5, ShipCountry="Türkiye"});
-            //orderManager.Update(new Order { OrderID = 11082, ShipCity = "Test Şehri 2", OrderDate = date1, CustomerID = "VINET", EmployeeID = 5, ShipCountry = "Elazığ 2" });
+        //orderManager.Add(new Order { ShipCity = "Malatya", OrderDate=date1, CustomerID= "VINET", EmployeeID= 5, ShipCountry="Türkiye"});
+        //orderManager.Update(new Order { OrderID = 11082, ShipCity = "Test Şehri 2", OrderDate = date1, CustomerID = "VINET", EmployeeID = 5, ShipCountry = "Elazığ 2" });
 
-            //getProductDetail(productManager);
-            //GetAllEmployee(employeeManager);
+        //getProductDetail(productManager);
+        //GetAllEmployee(employeeManager);
 
-            //GetOrderDetails(orderManager);
-            //AddProduct(productManager);
+        //GetOrderDetails(orderManager);
+        //AddProduct(productManager);
 
-        
+
     }
 }
 
