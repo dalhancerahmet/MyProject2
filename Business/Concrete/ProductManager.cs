@@ -1,4 +1,5 @@
 ﻿using Business.Abstract;
+using Business.BusinessAspects.Autofac;
 using Business.Contants;
 using Business.ValidationRules.FluentValidation;
 using Core.Aspects.Autofac.Validation;
@@ -26,6 +27,7 @@ namespace Business.Concrete
             _categoryService = categoryService;
         }
         [ValidationAspect(typeof(ProductValidator))]
+        [SecuredOperation("admin")]
         public IResult Add(Product product)
         {
             IResult result = BusinessRules.Run(CheckOfDateTime(),CheckOfCategoryCount());
@@ -65,7 +67,7 @@ namespace Business.Concrete
 
         private IResult CheckOfDateTime()
         {
-            if (DateTime.Now.Hour == 00) 
+            if (DateTime.Now.Hour == 21) 
             {
                 return new ErrorResult(Messages.MaintenanceTime);
             }

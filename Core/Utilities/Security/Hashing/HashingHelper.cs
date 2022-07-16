@@ -20,6 +20,8 @@ namespace Core.Utilities.Security.Hashing
             using (var hmac= new System.Security.Cryptography.HMACSHA512(passwordSalt))
             {
                 var computedHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(password));
+
+                //hashleri karşılaştırmanın 2 yöntemi var. 1.si diziye atıp for ile tek tek dizi elemanlarını karşılaştırmak
                 for (int i = 0; i < computedHash.Length; i++)
                 {
                     if (computedHash[i] != passwordHash[i])
@@ -27,6 +29,8 @@ namespace Core.Utilities.Security.Hashing
                         return false;
                     }
                 }
+                //2. yöntem ise aşağıdaki gibi sequenceEqual metedo ile computedHash ve passwordHash i karşılaştırıp true yada false dönüyor 
+                //return computedHash.SequenceEqual(passwordHash);
 
             }
             return true;

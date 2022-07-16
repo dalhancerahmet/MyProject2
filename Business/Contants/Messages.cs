@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Core.Entities.Concrete;
+using System;
 using System.Collections.Generic;
+using System.Runtime.Serialization;
 using System.Text;
 
 namespace Business.Contants
@@ -16,5 +18,14 @@ namespace Business.Contants
         public static string ProductListedByDetails = "Ürünler istenilen tabloya göre listelendi.";
 
         public static string CategoryLimitedExceeded = "Kategori limiti aşıldı.";
+
+        public static string AuthorizationDenied = "Yetkiniz yoktur.";
+
+        public static string UserRegistered = "Kullanıcı kaydı başarılı";
+        public static string UserNotFound = "Kullanıcı bulunamadı";
+        public static string PasswordError = "Şifre hatalı";
+        public static string SuccessfulLogin = "Giriş başarılı";
+        public static string UserAlreadyExists = "Kullanıcı zaten var";
+        public static string AccessTokenCreated = "Token oluşturuldu.";
     }
 }
