@@ -13,6 +13,14 @@ namespace ConsoleUI
             ProductManager productManager = new ProductManager(new EfProductDal(), new CategoryManager(new EfCategoryDal()));
             EmployeeManager employeeManager = new EmployeeManager(new EfEmployeeDal());
 
+            //configuration diye bir sınıf oluşturup içerisine connectionString adında bir nesne tanımladık.
+            //Bu nesnenin sadece bir değeri var ve o değeri get ile tanımladık.
+            Configuration configuration = new Configuration();
+            Console.WriteLine(configuration.ConnectionString);
+
+
+
+
             //GetAllUnitPrice(productManager);
             //GetContains(productManager);
             //OrderManager orderManager = new OrderManager(new EfOrderDal());

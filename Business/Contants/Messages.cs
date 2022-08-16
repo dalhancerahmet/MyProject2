@@ -27,5 +27,15 @@ namespace Business.Contants
         public static string SuccessfulLogin = "Giriş başarılı";
         public static string UserAlreadyExists = "Kullanıcı zaten var";
         public static string AccessTokenCreated = "Token oluşturuldu.";
+
+        public static string ProductNameAlreadyExist = "Bu isimde ürün zaten var.";
+
+        public static string ProductUpdated = "Ürün güncellendi.";
+
+        public static string ProductDeleted = "Ürün silindi.";
+
+        public static string CategoryAdded = "Kategori Eklendi.";
+
+        public static string CategoryNameAlreadyExist = "Aynı isimde kategori zaten var.";
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Business.Abstract;
+using Entities.Concrete;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -13,10 +14,12 @@ namespace WebAPI.Controllers
     public class CategoryController : ControllerBase
     {
         ICategoryService _categoryService;
+        IProductService _productService;
 
-        public CategoryController(ICategoryService categoryService)
+        public CategoryController(ICategoryService categoryService,IProductService productService)
         {
             _categoryService = categoryService;
+            _productService = productService;
         }
 
         [HttpGet("getall")]
@@ -26,10 +29,21 @@ namespace WebAPI.Controllers
         }
 
         [HttpGet("categorycaunt")]
-        public IActionResult CategoryCount()
+        public IActionResult CategoryCount(int categoryId)
         {
             return Ok(_categoryService.CategoryCount());
+
         }
 
+        [HttpGet("getcategorycountofproduct")]
+        public IActionResult GetCategoryCountOfProduct(int categoryId)
+        {
+            return Ok(_productService.ProductCountOfCategoryId(categoryId));
+        }
+        [HttpPost("add")]
+        public IActionResult Add(Category category)
+        {
+            return Ok(_categoryService.Add(category));
+        }
     }
 }

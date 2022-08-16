@@ -51,9 +51,9 @@ namespace WebAPI.Controllers
             
         }
         [HttpGet("GetAllByCategoryId")]
-        public IActionResult GetAllByCategoryId(int id)
+        public IActionResult GetAllByCategoryId(int categoryid)
         {
-            var result = _productService.GetAllByCategoryId(id);
+            var result = _productService.GetAllByCategoryId(categoryid);
             return Ok(result);
         }
 
@@ -61,6 +61,13 @@ namespace WebAPI.Controllers
         public IActionResult GetAllUnitPrice(decimal min, decimal max)
         {
             var result = _productService.GetAllUnitPrice(min, max);
+            return Ok(result);
+        }
+
+        [HttpGet("getproductcountofcategoryId")]
+        public IActionResult GetProductCountOfCategoryId(int categoryId)
+        {
+            var result = _productService.ProductCountOfCategoryId(categoryId);
             return Ok(result);
         }
     }

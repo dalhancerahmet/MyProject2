@@ -15,7 +15,7 @@ namespace Business.DependencyResolvers.Autofac
 {
     public class AutofacBusinnessModule:Module
     {
-        protected override void Load(ContainerBuilder builder)
+        protected override void Load2(ContainerBuilder builder)
         {
             builder.RegisterType<ProductManager>().As<IProductService>().SingleInstance();
             builder.RegisterType<EfProductDal>().As<IProductDal>().SingleInstance();
