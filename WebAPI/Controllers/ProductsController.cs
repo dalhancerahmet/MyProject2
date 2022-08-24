@@ -84,6 +84,7 @@ namespace WebAPI.Controllers
                 
             foreach (IFormFile file in Request.Form.Files)
             {
+                //fileStream ile klasöre yetki veriyor ve yazma işlemi yapacağımızı belirtiyoruz.
                 string fullPath = Path.Combine(uploadPath, $"{r.Next()}{Path.GetExtension(file.FileName)}");
                 using FileStream fileStream = new FileStream(fullPath, FileMode.Create, FileAccess.Write, FileShare.None, 1024 * 1024, false);
                 await file.CopyToAsync(fileStream);
