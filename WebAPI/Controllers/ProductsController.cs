@@ -3,10 +3,12 @@ using Business.Concrete;
 using Core.Utilities.Results;
 using DataAccess.Concrete.EntityFramework;
 using Entities.Concrete;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -17,10 +19,12 @@ namespace WebAPI.Controllers
     public class ProductsController : ControllerBase
     {
         IProductService _productService;
+        IWebHostEnvironment _webHostEnvironment;
 
-        public ProductsController(IProductService productService)
+        public ProductsController(IProductService productService, IWebHostEnvironment webHostEnvironment)
         {
             _productService = productService;
+            _webHostEnvironment = webHostEnvironment;
         }
 
 
@@ -48,7 +52,7 @@ namespace WebAPI.Controllers
             {
                 return BadRequest("Veri boş");
             }
-            
+
         }
         [HttpGet("GetAllByCategoryId")]
         public IActionResult GetAllByCategoryId(int categoryid)
@@ -69,6 +73,23 @@ namespace WebAPI.Controllers
         {
             var result = _productService.ProductCountOfCategoryId(categoryId);
             return Ok(result);
+        }
+
+        [HttpPost("upload")]
+        public async Task<IActionResult> Upload()
+        {
+            Random r = new Random();
+            string uploadPath = Path.Combine(_webHostEnvironment.WebRootPath, "resource/product-images");
+            if (!Directory.Exists(uploadPath)) { Directory.CreateDirectory(uploadPath); }
+                
+            foreach (IFormFile file in Request.Form.Files)
+            {
+                string fullPath = Path.Combine(uploadPath, $"{r.Next()}{Path.GetExtension(file.FileName)}");
+                using FileStream fileStream = new FileStream(fullPath, FileMode.Create, FileAccess.Write, FileShare.None, 1024 * 1024, false);
+                await file.CopyToAsync(fileStream);
+                await fileStream.FlushAsync();
+            }
+            return Ok();
         }
     }
 }

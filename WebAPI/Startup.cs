@@ -73,7 +73,9 @@ namespace WebAPI
             app.ConfigureCustomExceptionMiddleware();
 
 
-            app.UseCors(builder => builder.WithOrigins("http://localhost:4200").AllowAnyHeader());
+            app.UseCors(builder => builder.WithOrigins("http://localhost:4200").AllowAnyHeader());// client dan gelen istekleri kabul etmek ve response dönmek için ilgili url e izin veriyoruz.
+
+            app.UseStaticFiles();//Güvenli bir þekilde dosyalarý sunucuda tutmak için//wwwroot içerisinde tutmak için bunu kullanýyoruz.
 
             app.UseHttpsRedirection();
 
